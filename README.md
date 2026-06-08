@@ -59,6 +59,10 @@ Backend coverage is configured to fail below 90%. Frontend coverage thresholds a
 
 ## GCP Deployment
 
+For Cloud Run "deploy continuously from GitHub/source" on the frontend, the repository root now includes a `Dockerfile`. That default source deploy expects `/workspace/Dockerfile`, which is why a deploy fails if only `frontend/Dockerfile` exists.
+
+Use `cloudbuild.yaml` when deploying both services from the monorepo. It builds `backend/Dockerfile` and `frontend/Dockerfile` separately.
+
 1. Create or select a GCP project.
 2. Enable Cloud Run, Cloud SQL, Artifact Registry, Secret Manager, Cloud Build, and Cloud Monitoring APIs.
 3. Apply Terraform:
